@@ -1,13 +1,13 @@
 #include "../ft_printf.h"
 
-void	ft_puthex(unsigned long n)
+int ft_puthex(unsigned long n)
 {
-
-  if (n > 15)
-    ft_puthex(n / 16);
-  if (n % 16 < 10)
-    ft_putchar(n % 16 + '0');
-  else
-    ft_putchar(n % 16 - 10 + 'a');
-  
+    int count = 0;
+    if (n > 15)
+        count += ft_puthex(n / 16);
+    if (n % 16 < 10)
+        count += ft_putchar(n % 16 + '0');
+    else
+        count += ft_putchar(n % 16 - 10 + 'a');
+    return count;
 }

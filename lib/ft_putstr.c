@@ -1,11 +1,12 @@
 #include "../ft_printf.h"
 
-void	ft_putstr(char *str) {
-  int i;
-
-  i = 0;
-  while (str[i] != '\0') {
-    ft_putchar(str[i]);
-    i++;
+int ft_putstr(char *str) {
+  int count = 0;
+  if (!str)
+    return ft_putstr("(null)");
+  while (str[count] != '\0') {
+    ft_putchar(str[count]);
+    count++;
   }
+  return count;
 }

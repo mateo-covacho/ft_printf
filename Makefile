@@ -6,15 +6,15 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = libftprintf.a
 
 # Source and object files
-SRCS = main.c printf.c tests.c \
-       lib/ft_putchar.c lib/ft_puthex.c lib/ft_putnbr.c lib/ft_putstr.c lib/ft_put_upper_hex.c
+SRCS = printf.c tests.c \
+       lib/ft_putchar.c lib/ft_unsig_nbr.c lib/ft_puthex.c lib/ft_putnbr.c lib/ft_putstr.c lib/ft_put_upper_hex.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-# Rule to build the program
+# Rule to build the static library
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	ar rcs $(NAME) $(OBJS)
 
 # Rule to compile source files into object files
 %.o: %.c

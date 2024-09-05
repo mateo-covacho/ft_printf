@@ -11,11 +11,16 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 #include <stdarg.h>
+#include <unistd.h>
 
-int	ft_printf(const char *format, ...)
+int ft_printf(const char *format, ...)
 {
 	va_list args;
+	int count = 0;
+
 	va_start(args, format);
+	if (!format)
+		return 0;
 
 	while (*format)
 	{
@@ -23,59 +28,34 @@ int	ft_printf(const char *format, ...)
 		{
 			format++;
 			if (*format == 's')
-			{
-				char *str = va_arg(args, char *);
-				ft_putstr(str);
-			}
+				count += ft_putstr(va_arg(args, char *));
 			else if (*format == 'c')
-			{
-				char c = va_arg(args, int);
-				ft_putchar(c);
-			}
-			else if (*format == 'd')
-			{
-				int num = va_arg(args, int);
-				ft_putnbr(num);
-			}
-			else if (*format == 'i')
-			{
-				int num = va_arg(args, int);
-				ft_putnbr(num);
-			}
+				count += ft_putchar(va_arg(args, int));
+			else if (*format == 'd' || *format == 'i')
+				count += ft_putnbr(va_arg(args, int));
 			else if (*format == 'u')
-			{
-				int num = va_arg(args, int);
-				ft_putnbr(num);
-			}
+				count += ft_unsig_nbr(va_arg(args, unsigned int));
 			else if (*format == 'p')
 			{
 				void *ptr = va_arg(args, void *);
 				if (!ptr)
-					ft_putstr("(nil)");
+					count += ft_putstr("(nil)");
 				else {
-					ft_putstr("0x");
-					ft_puthex((unsigned long)ptr);
+					count += ft_putstr("0x");
+					count += ft_puthex((unsigned long)ptr);
 				}
 			}
 			else if (*format == 'x')
-			{
-				int num = va_arg(args, int);
-				ft_puthex(num);
-			}
+				count += ft_puthex(va_arg(args, unsigned int));
 			else if (*format == 'X')
-			{
-				int num = va_arg(args, int);
-				ft_put_upper_hex(num);
-			}
+				count += ft_put_upper_hex(va_arg(args, unsigned int));
 			else if (*format == '%')
-			{
-				ft_putchar('%');
-			}
+				count += ft_putchar('%');
 		}
 		else
-			ft_putchar(*format);
+			count += ft_putchar(*format);
 		format++;
 	}
 	va_end(args);
-	return 0;
+	return count;
 }
