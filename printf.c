@@ -40,7 +40,8 @@ int ft_printf(const char *format, ...)
 				void *ptr = va_arg(args, void *);
 				if (!ptr)
 					count += ft_putstr("(nil)");
-				else {
+				else
+				{
 					count += ft_putstr("0x");
 					count += ft_puthex((unsigned long)ptr);
 				}
