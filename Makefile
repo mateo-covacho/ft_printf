@@ -6,7 +6,7 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = libftprintf.a
 
 # Source and object files
-SRCS = printf.c tests.c \
+SRCS = printf.c  \
        lib/ft_putchar.c lib/ft_unsig_nbr.c lib/ft_puthex.c lib/ft_putnbr.c lib/ft_putstr.c lib/ft_put_upper_hex.c
 OBJS = $(SRCS:.c=.o)
 

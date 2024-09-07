@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mateocovachov2 <mateocovachov2@gmail.com>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/07 15:46:53 by mateocovachov2    #+#    #+#             */
+/*   Updated: 2024/09/07 15:48:17 by mateocovachov2   ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "../ft_printf.h"
 
-int ft_putchar(char c)
+int	ft_putchar(char c)
 {
-	return write(1, &c, 1);
+	return (write(1, &c, 1));
 }
